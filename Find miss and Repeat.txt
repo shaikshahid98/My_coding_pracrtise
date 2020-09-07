@@ -1,0 +1,64 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+	//code
+	int nn;
+	cin>>nn;
+	while(nn--)
+	{
+	    long long int n,max=0,i,j,k,ind=1,num=99999999999999,miss;
+	    cin>>n;
+	    long long int a[n];
+	    for(i=0;i<n;i++) cin>>a[i];
+	    sort(a,a+n);
+	    for(i=0;i<n;ind++)
+	    {
+	        if(a[i]==ind)
+	        {
+	            if(a[i+1]==ind)
+	            {
+	                num=min(num,ind);
+	                //cout<<num<<" num\n";
+	                if(i<n-2) i=i+2;
+	                else
+	                {
+	                    miss=ind+1;
+	                    break;
+	                }
+	            }
+	            else 
+	            {
+	                i++;
+	                continue;
+	            }
+	        }
+	        else
+	        {
+	            if(a[i]==ind+1) miss=ind;
+	        }
+	    }
+	    cout<<num<<" "<<miss<<"\n";
+	    
+	}
+	return 0;
+}
+
+
+
+
+Example:
+Input:
+2
+2
+2 2
+3 
+1 3 3
+
+Output:
+2 1
+3 2
+
+Explanation:
+Testcase 1: Repeating number is 2 and smallest positive missing number is 1.
+Testcase 2: Repeating number is 3 and smallest positive missing number is 2.

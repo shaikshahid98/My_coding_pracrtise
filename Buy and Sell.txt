@@ -1,0 +1,57 @@
+#include <iostream>
+using namespace std;
+#include<bits/stdc++.h>
+
+int main() {
+	//code
+	int nn;
+	cin>>nn;
+	while(nn--)
+	{
+	    int n,i,j,k,p,ans=0;
+	    cin>>n;
+	    int a[n];
+	    for(i=0;i<n;i++) cin>>a[i];
+	    int s=0,b=0;
+	    k=0;
+	    while(k<n-1)
+	    {
+	        while(k<n-1&&a[k]>=a[k+1])
+	        {
+	            k++;
+	        }
+	        b=k;
+	        if(b>=n-1) break;
+	        k++;
+	        while(k<n-1 && a[k]<=a[k+1])
+	        {
+	            k++;
+	        }
+	        s=k;
+	        k++;
+	        if(b<n-1 && s<n) 
+	        {
+	            cout<<"("<<b<<" "<<s<<") ";
+	            ans=1;
+	        }
+	 	}
+	 	if(ans==0) cout<<"No Profit";
+	    cout<<"\n";
+	}
+	return 0;
+}
+
+
+
+
+Example
+Input:
+2
+7
+100 180 260 310 40 535 695
+10
+23 13 25 29 33 19 34 45 65 67
+
+Output:
+(0 3) (4 6)
+(1 4) (5 9)

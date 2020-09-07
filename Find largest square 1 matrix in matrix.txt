@@ -1,0 +1,49 @@
+class Solution {
+public:
+    int res=0;
+    void getl(int tmp[],int n,int m)
+    {
+        int cnt=0,tmpr=0;
+        for(int i=0;i<m;i++)
+        {
+            if(tmp[i]==1)
+                cnt++;
+            else
+            {
+                tmpr=max(tmpr,cnt);
+                if(tmpr>n)
+                    tmpr=n;
+                cnt=0;
+            }
+        }
+        tmpr=max(tmpr,cnt);
+        if(tmpr>n)
+            tmpr=n;
+        res= max(res,tmpr);
+        return;
+    }
+    int maximalSquare(vector<vector<char>>& mat) {
+        if(mat.empty()) return 0;
+        int nr,n=mat.size(),m=mat[0].size();
+        if(n==0 || m==0)
+            return 0;
+        
+        int matr[n][m];
+        for(int i=0;i<n;i++)
+            for(int j=0;j<m;j++)
+                matr[i][j]= mat[i][j]-'0';
+        int tmp[m];
+        for(int i=0;i<n;i++)
+        {
+            nr=1;
+            memset(tmp,1,sizeof(tmp));
+            for(int j=i;j<n;j++)
+            {
+                for(int k=0;k<m;k++)
+                    tmp[k]=  tmp[k] & matr[j][k]  ;
+                getl(tmp,nr++,m);
+            }
+        }
+        return res*res;
+    }
+};

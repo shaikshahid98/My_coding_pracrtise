@@ -1,0 +1,40 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int kad(int tmp[],int c)
+{
+    int gmax=tmp[0],lmax=tmp[0];
+    for(int i=1;i<c;i++)
+    {
+        lmax= max(tmp[i],lmax+tmp[i]);
+        gmax=max(gmax,lmax);
+    }
+    return gmax;
+}
+
+int main() {
+    int t;
+    cin>>t;
+    while(t--)
+    {
+        int r,c;
+        cin>>r>>c;
+        int a[r][c];
+        int i,j,k,l;
+        for(i=0;i<r;i++)
+            for(j=0;j<c;j++)
+                cin>>a[i][j];
+        int tmp[c],ans=INT_MIN;
+        memset(tmp,0,sizeof(tmp));
+        for(int r1=0;r1<r;r1++){
+            memset(tmp,0,sizeof(tmp));
+            for(int r2= r1;r2<r;r2++)
+                {
+                    for(int l=0;l<c;l++)
+                        tmp[l]=  a[r2][l]+tmp[l] ;
+                    ans= max(ans,kad(tmp,c));
+                }
+        }
+        cout<<ans<<endl;
+    }
+}

@@ -1,0 +1,44 @@
+const int mod = 10000003;
+int ck(long long int mid,vector<int> C) // Returns no. of workers required to do the job in "mid" time.
+{
+    
+    int cnt=1;
+    long long int sum=0;
+    for(int i=0;i<C.size();i++)
+    {
+        
+        if(sum+C[i]>mid)
+        {
+            cnt++;
+            sum=C[i];
+            if(C[i]>mid) return INT_MAX;
+        }
+        else sum+=C[i];
+    }
+    return cnt;
+}
+int Solution::paint(int A, int B, vector<int> &C) {
+    
+    long long int low=LONG_MAX,high=0;
+    for(int i:C)
+    {
+        low=min(low,(long long ) i);
+        high+= i;
+    }
+    long long int mid,best;
+    while(low<=high)
+    {
+        mid= low+(high-low)/2;
+        if(ck(mid,C)<=A)
+        {
+            best=mid;
+            high=mid-1;
+            
+        }
+        else low=mid+1;
+    }
+    return (best*B)%10000003;
+}
+    
+
+/* VKG */

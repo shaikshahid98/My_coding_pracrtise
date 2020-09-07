@@ -1,0 +1,29 @@
+bool top(int v,  vector<int> adj[])
+{
+    int vis=0;
+    int ind[v]={0};
+    for(int i=0;i<v;i++)
+    for(int j=0;j<adj[i].size();j++)
+    ind[adj[i][j]]++;
+    queue<int>q;
+    for(int i=0;i<v;i++)
+    if(ind[i]==0) q.push(i);
+    while(!q.empty())
+    {
+        int t=q.front();
+        vis++;
+        q.pop();
+        for(int i=0;i<adj[t].size();i++)
+        {
+            ind[adj[t][i]]--;
+            if(ind[adj[t][i]]==0)
+            q.push(adj[t][i]);
+        }
+    }
+    if(vis<v) return true;
+    else return false;
+}
+bool isCyclic(int v, vector<int> adj[])
+{
+    return top(v,adj);
+}

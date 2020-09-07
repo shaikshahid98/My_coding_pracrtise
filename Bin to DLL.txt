@@ -1,0 +1,26 @@
+
+void convert(Node *t,Node *&head,Node *&tmp)
+{
+    if(t!=NULL)
+    {
+        convert(t->left,head,tmp);
+        if(head==NULL)
+        {
+            head=t;
+            tmp=head;
+        }
+        else
+        {
+            t->left=tmp;
+            tmp->right=t;
+            tmp=t;
+        }
+        convert(t->right,head,tmp);
+    }
+}
+
+void bToDLL(Node *root, Node **head_ref)
+{
+    Node *tmp=NULL;
+    convert(root,*head_ref,tmp);
+}

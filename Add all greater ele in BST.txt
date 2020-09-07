@@ -1,0 +1,17 @@
+int getsum ( Node* &p,int &sum)
+{
+    if(!p) return 0;
+    getsum(p->right,sum);
+    sum += p->data;
+    p->data = sum;
+    getsum(p->left,sum);
+    return 0;
+}
+Node* modify(Node *root)
+{
+   if(!root) return nullptr;
+   if(!root->left && !root->right) return root;
+   int sum=0;
+   getsum(root,sum);
+   return root;
+}

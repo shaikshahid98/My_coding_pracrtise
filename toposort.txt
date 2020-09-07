@@ -1,0 +1,31 @@
+int* topoSort( int v, vector<int> adj[]) {
+    int ind[v]={0};
+    static int res[50];
+    bool vis[v]={false};
+    for(int i=0;i<v;i++)
+    for(int j=0;j<adj[i].size();j++)
+    ind[adj[i][j]]++;
+    queue<int>q;
+    int l=0;
+    for(int i=0;i<v;i++)
+    if(ind[i]==0)
+    q.push(i);
+    while(!q.empty())
+    {
+        int t=q.front();
+        q.pop();
+        vis[t]=true;
+        res[l]=t;
+        l++;
+        for(int i=0;i<adj[t].size();i++)
+        {
+            ind[adj[t][i]]--;
+            if(vis[adj[t][i]]==false && ind[adj[t][i]]==0)
+            {
+                q.push(adj[t][i]);
+            }
+        }
+    }
+    int *p=res;
+    return p;
+}

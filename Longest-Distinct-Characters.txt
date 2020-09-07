@@ -1,0 +1,32 @@
+#code
+n=input()
+n=int(n)
+for _ in range(n):
+    s=input()
+    num=-999
+    l=[]
+    for i in range(len(s)):
+        p=s[i]
+        l.append(p)
+        if i != len(s)-1:
+            for x in s[i+1:]:
+                if x not in l:
+                    l.append(x)
+                else:
+                    break
+            num=max(num,len(l))
+            #print(l)
+            del l[:]
+    print(num)
+    
+        
+    
+    Example:
+Input:
+2
+abababcdefababcdab
+geeksforgeeks
+
+Output:
+6
+7

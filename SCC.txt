@@ -1,0 +1,49 @@
+
+void calc_t(int i,bool vis[],stack<int> &st,vector<vector<int>> &adj)
+{
+    vis[i]=true;
+    for(int j:adj[i])
+        if(!vis[j])
+            calc_t(j,vis,st,adj);
+    st.push(i);
+}
+void dfs(int i,bool vis[],vector<vector<int>> &radj)
+{
+    vis[i]=true;
+    for(int j:radj[i])
+        if(!vis[j])
+            dfs(j,vis,radj);
+}
+int kosaraju(int n, vector<int> tadj[])
+{
+    vector<vector<int>> adj(n+1,vector<int>{});
+    for(int i=0;i<n;i++)
+        for(int j:tadj[i])
+            adj[i].push_back(j);
+    bool vis[n];
+   memset(vis,false,sizeof(vis));
+   stack<int> st;
+   for(int i=0;i<n;i++)
+    if(!vis[i])
+        calc_t(i,vis,st,adj);
+   memset(vis,false,sizeof(vis));
+   vector<vector<int>> radj(n+1,vector<int>{});
+   for(int i=0;i<n+1;i++)
+    for(int j:adj[i])
+        radj[j].push_back(i);
+    int cnt=0;
+    while(st.size())
+    {
+        int node= st.top();
+        st.pop();
+        if(!vis[node])
+        {
+            dfs(node,vis,radj);
+            cnt++;
+        }
+    }
+    return cnt; 
+        
+
+
+}

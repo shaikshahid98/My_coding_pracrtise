@@ -1,0 +1,15 @@
+class Solution {
+public:
+    int trap(vector<int>& hi) {
+        int n=hi.size(),res=0;
+        int l=0,h=n-1,max1=0;
+        while(l<=h)
+        {
+            int tmp= hi[ hi[l]<hi[h] ? l++ : h-- ];
+            max1= max(max1,tmp);
+            res+= (max1-tmp);
+        }
+        return res;
+        
+    }
+};

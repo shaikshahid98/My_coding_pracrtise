@@ -1,0 +1,30 @@
+#code
+n=input()
+n=int(n)
+for  i in range(n):
+    l=[]
+    s=input().split()
+    u=0
+    for x in s:
+        l.append(sorted(x))
+    p=l[0]
+    for x in l:
+        if x==p:
+            continue
+        else:
+            u=1
+            break
+    if u==0:
+        print("YES")
+    else:
+        print("NO")
+    del l[:]
+            
+        
+ 2
+geeksforgeeks forgeeksgeeks
+allergy allergic
+
+Output:
+YES
+NO

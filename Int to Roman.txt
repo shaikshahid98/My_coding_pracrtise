@@ -1,0 +1,8 @@
+string Solution::intToRoman(int A) {
+    vector<string> ones={"","I","II","III","IV","V","VI","VII","VIII","IX"};
+     vector<string>tens={"","X","XX","XXX","XL","L","LX","LXX","LXXX","XC"};
+    vector<string>hund={"","C","CC","CCC","CD","D","DC","DCC","DCCC","CM"};
+    vector<string>th={"", "M","MM","MMM"};
+    string tmp= th[(A/1000)]+hund[(A%1000)/100]+tens[(A%100)/10]+ones[(A%10)];
+    return tmp;
+}

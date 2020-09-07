@@ -1,0 +1,34 @@
+void dijkstra(vector<vector<int>> graph, int src, int V)
+{
+    set<pair<int,int>> s;
+    int dis[V];
+    s.insert(make_pair(0,src));
+    int i,j,k;
+    for(i=0;i<V;i++)
+    dis[i]=1000001;
+    dis[src]=0;
+    while(!s.empty())
+    {
+        auto p=*(s.begin());
+        int node=p.second;
+        int nodedis=p.first;
+        s.erase(s.begin());
+        for(i=0;i<V;i++)
+        {
+            if(graph[node][i])
+            {
+                if(dis[i] > nodedis+graph[node][i])
+                {
+                    auto f=s.find(make_pair(dis[i],i));
+                    if(f!=s.end()) 
+                    s.erase(f);
+                    dis[i]=nodedis+graph[node][i];
+                    s.insert(make_pair(dis[i],i));
+                }
+            }
+        }
+    }
+    for(i=0;i<V;i++)
+    cout<<dis[i]<<" ";
+    //cout<<"\n";
+}

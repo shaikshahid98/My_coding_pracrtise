@@ -1,0 +1,18 @@
+l=[]
+def prm(data,i,length):
+    if i==length:
+        l.append(''.join(data))
+    else:
+        for j in range(i,length):
+            data[i],data[j]=data[j],data[i]
+            prm(data,i+1,length)
+            data[i],data[j]=data[j],data[i]
+p="abc"
+n=len(p)
+data=list(p)
+prm(data,0,n)
+print(l)
+
+
+
+['abc', 'acb', 'bac', 'bca', 'cba', 'cab']

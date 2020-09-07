@@ -1,0 +1,18 @@
+void bfs(int s, vector<int> adj[], bool vis[], int N)
+{
+    queue<int>q;
+    q.push(s);
+    vis[s]=true;
+    while(!q.empty())
+    {
+        int t=q.front();
+        q.pop();
+        cout<<t<<" ";
+        for (int e:adj[t])
+        if(vis[e]!=true)
+        {
+            vis[e]=true;
+            q.push(e);}
+    }
+    
+}

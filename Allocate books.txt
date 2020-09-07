@@ -1,0 +1,40 @@
+int ck(long long int mid,vector<int> &A)
+{
+    int cnt=1;
+    long long int sum=0;
+    for(int i=0;i<A.size();i++)
+    {
+        if(sum+A[i]>mid)
+        {
+            cnt++;
+            sum=A[i];
+            if(A[i]>mid) return INT_MAX;
+        }
+        else sum += A[i];
+    }
+    return cnt;
+}
+int Solution::books(vector<int> &A, int B) {
+    if(A.size()<B) return -1;
+        long long int low=LONG_MAX,high=0,max1=LONG_MIN;
+        for(int i:A)
+        {
+           
+            low=min(low,(long long ) i);
+            high += i;
+        }
+        long long int h=high;
+        long long int best=LONG_MAX,mid;
+        while(low<high)
+        {
+            mid= low+(high-low)/2;
+            if(ck(mid,A)<=B)
+            {
+                best=mid;
+                high=mid;
+                
+            }
+            else low=mid+1;
+        }
+        return best==LONG_MAX ? h : best ;
+}

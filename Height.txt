@@ -1,0 +1,21 @@
+int max_depth=-1;
+void solve(Node *p,int depth)
+{
+    if(!p) return ;
+    else
+    {
+        if(depth>max_depth) max_depth=depth;
+        solve(p->left,depth+1);
+        solve(p->right,depth+1);
+        
+    }
+    
+}
+
+int height(Node* root)
+{
+   // Your code here
+   max_depth=0;
+    solve(root,0);
+    return max_depth+1;
+}

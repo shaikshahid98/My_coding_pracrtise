@@ -1,0 +1,77 @@
+class Trie {
+public:
+    struct TrieNode
+    {
+        char val;
+        int count;
+        int endshere;
+        TrieNode *child[26];
+    };
+    TrieNode *root;
+    TrieNode *getNode(int index)
+    {
+        TrieNode *tmp= new TrieNode();
+        tmp->val= 'a'+index;
+        tmp->count=tmp->endshere=0;
+        for(int i=0;i<26;i++)
+            tmp->child[i]=NULL;
+        return tmp;
+    }
+    Trie() {
+        ios_base::sync_with_stdio(false);
+        cin.tie(NULL);
+        root = getNode('/'+'a');
+    }
+    
+    /** Inserts a word into the trie. */
+    void insert(string word) {
+        TrieNode *curr=root;
+        for(char c:word)
+        {
+            int ind= c-'a';
+            if(curr->child[ind]==NULL)
+            {
+                curr->child[ind]=getNode(ind);
+                curr->child[ind]->count++;
+            }
+            curr=curr->child[ind];
+        }
+        curr->endshere++;
+    }
+    
+    /** Returns if the word is in the trie. */
+    bool search(string word) {
+        if(word.size()==0) return false;
+        TrieNode *curr= root;
+        for(char c:word)
+        {
+            int ind= c-'a';
+            if(curr->child[ind]==NULL)
+                return false;
+            curr=curr->child[ind];
+        }
+        return (curr->endshere>0);
+    }
+    
+    /** Returns if there is any word in the trie that starts with the given prefix. */
+    bool startsWith(string prefix) {
+        if(prefix.size()==0) return false;
+        TrieNode *curr= root;
+        for(char c:prefix)
+        {
+            int ind= c-'a';
+            if(curr->child[ind]==NULL)
+                return false;
+            curr=curr->child[ind];
+        }
+        return (curr->count>0);
+    }
+};
+
+/**
+ * Your Trie object will be instantiated and called as such:
+ * Trie* obj = new Trie();
+ * obj->insert(word);
+ * bool param_2 = obj->search(word);
+ * bool param_3 = obj->startsWith(prefix);
+ */

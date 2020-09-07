@@ -1,0 +1,16 @@
+class Solution {
+public:
+    int trap(vector<int>& height) {
+        int res=0,maxh=0;
+        int l=0,h=height.size()-1;
+        while(l<h)
+        {
+            int tmp= height[height[l]<height[h] ? l++ : h--];
+            maxh= max(maxh,tmp);
+             res += abs(maxh-tmp);
+        }
+        
+     //   return res;
+        return res;
+    }
+};

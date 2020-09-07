@@ -1,0 +1,67 @@
+#include <bits/stdc++.h>
+using namespace std;
+#define ll long long
+int gettar(vector<int> v)
+{
+    int n=v.size();
+    int sumofa=0;
+    for(int i:v) sumofa+= i;
+    int sum=sumofa/2;
+    bool dp[n][sum+1];
+    memset(dp,false,sizeof(dp));
+    int tar=sum;
+    
+    for(int i=0;i<n;i++) dp[i][0]=true;
+    for(int i=0;i<=tar;i++) if(i==v[0]) dp[0][i]= true;
+    for(int i=1;i<n;i++)
+    {
+        for(int j=1;j<=tar;j++)
+        {
+            
+            if(dp[i-1][j])
+                dp[i][j]=true;
+            else
+            {
+                if(j>=v[i])
+                    dp[i][j]= dp[i-1][j-v[i]];
+                //else dp[i][j]= false;
+            }   
+        }
+    }
+    int ntar=-1;
+  
+    for(int i=tar;i>=0;i--)
+        if(dp[n-1][i])
+        {
+             ntar=i;
+             break;
+        }
+        int tar2= sumofa- ntar;
+        
+        cout<<abs(ntar-tar2)<<endl;
+        return 0;
+}
+void solve()
+{
+   int n,k;
+   cin>>n;
+   vector<int> v(n);
+   int sum=0,i,j;
+   
+   for(i=0;i<n;i++)
+   {
+       cin>>j;
+       //sum+=j;
+       v[i]=j;
+   }
+ gettar(v);
+}
+int main() {
+    int t;
+    cin>>t;
+    while(t--)
+    {
+        solve();
+         
+    }
+}

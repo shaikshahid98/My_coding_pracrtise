@@ -1,0 +1,132 @@
+
+#include <bits/stdc++.h>
+
+using namespace std;
+unordered_map <string,vector<pair<string,double>>> data;
+
+set<string> vis;
+bool found;
+double dfs(string s1,string s2)
+{
+    double res=-1.0,d=1;
+    vis.insert(s1);
+    if(s1==s2)
+    {
+        found=true;
+        res=1;
+        
+    }
+    vector<pair<string,double>> it= data[s1];
+    
+    for(auto p:it)
+    {
+        if(vis.count(p.first)==0)
+        {
+            d=dfs(p.first,s2);
+            if(found)
+        {
+            return d* p.second;
+        }
+        }
+        
+        
+    }
+    return res;
+}
+int main() {
+	int t,n;
+	cin>>t;
+	string s1,s2;
+	double d1,d,p;
+	while(t--)
+	{
+		cin>>s1>>s2>> d1;
+		data[s1].push_back(make_pair(s2,d1));
+		p=1.0/d1;
+		data[s2].push_back(make_pair(s1,p));
+	}
+	cin>> n;
+	while(n--)
+	{
+		found=false;
+		vis.clear();
+		cin>>s1>>s2;
+		double res;
+		//vis.insert(s1);
+		res=dfs(s1,s2);
+		if(res!=-1)
+		{
+			cout<<std::fixed<<std::setprecision(6)<<res<<endl;
+		}
+		else
+			cout<<std::fixed<<std::setprecision(6) << -1<<endl;
+	}
+
+}
+
+
+#include <bits/stdc++.h>
+
+using namespace std;
+unordered_map <string,vector<pair<string,double>>> data;
+
+set<string> vis;
+bool found;
+double dfs(string s1,string s2)
+{
+    double res=-1.0,d=1;
+    vis.insert(s1);
+    if(s1==s2)
+    {
+        found=true;
+        res=1;
+        
+    }
+    vector<pair<string,double>> it= data[s1];
+    
+    for(auto p:it)
+    {
+        if(vis.count(p.first)==0)
+        {
+            d=dfs(p.first,s2);
+            if(found)
+        {
+            return d* p.second;
+        }
+        }
+        
+        
+    }
+    return res;
+}
+int main() {
+	int t,n;
+	cin>>t;
+	string s1,s2;
+	double d1,d,p;
+	while(t--)
+	{
+		cin>>s1>>s2>> d1;
+		data[s1].push_back(make_pair(s2,d1));
+		p=1.0/d1;
+		data[s2].push_back(make_pair(s1,p));
+	}
+	cin>> n;
+	while(n--)
+	{
+		found=false;
+		vis.clear();
+		cin>>s1>>s2;
+		double res;
+		//vis.insert(s1);
+		res=dfs(s1,s2);
+		if(res!=-1)
+		{
+			cout<<std::fixed<<std::setprecision(6)<<res<<endl;
+		}
+		else
+			cout<<std::fixed<<std::setprecision(6) << -1<<endl;
+	}
+
+}
+

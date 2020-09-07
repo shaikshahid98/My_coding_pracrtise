@@ -1,0 +1,20 @@
+#include<iostream>
+using namespace std;
+#include<math.h>
+int main()
+{
+    int nn,i,j,k,l,p;
+    cin>>nn;
+    int t=int(ceil(sqrt(nn)));
+    bool a[int(nn+1)];
+    for(i=1;i<=nn;i++) a[i]=false;
+    for(int i=2;i<t;i++)
+    {
+        for(int j=i*i;j<=nn;j=j+i)
+        {
+            if(a[j]==false) a[j]=true;
+        }
+    }
+    for(i=2;i<=nn;i++) if(a[i]==false) cout<<i<<" ";
+}
+            

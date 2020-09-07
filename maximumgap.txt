@@ -1,0 +1,21 @@
+
+int Solution::maximumGap(const vector<int> &A) {
+    
+    int n=A.size();
+    if(n==0) return -1;
+    if(n==1) return 0;
+    
+   
+    vector<pair<int,int>> v;
+    for(int i=0;i<n;i++)
+        v.push_back({A[i],i});
+    sort(v.begin(),v.end());
+    int maxi=v[n-1].second,ans=0;
+    //cout<<maxi;
+    for(int i=n-2;i>=0;i--)
+        {
+            ans= max(ans,maxi-v[i].second);
+            maxi=max(maxi,v[i].second);
+        }
+    return ans;
+}

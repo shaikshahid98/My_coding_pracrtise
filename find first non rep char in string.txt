@@ -1,0 +1,35 @@
+#include <bits/stdc++.h>
+using namespace std;
+void solve()
+{
+    string s;
+    int n;
+    cin>>n;
+    cin>>s;
+    int i=0,res=-1;
+    unordered_set<char> st;
+    while(s[i]!= '\0')
+    {
+        int t= s.substr(i+1).find_last_of(s[i]);
+        if(t==-1 && st.count(s[i])==0)
+        {
+            cout<<s[i]<<endl;
+            s="";
+            return;
+        }
+        st.insert(s[i]);
+        //cout<<t<<endl;
+        i++;
+    }
+    cout<<-1<<endl;
+    return;
+}
+int main() {
+    int t;
+    cin>>t;
+    while(t--)
+    {
+        solve();
+         
+    }
+}

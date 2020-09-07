@@ -1,0 +1,23 @@
+
+
+Node inorder(Node *p,vector<int> &v)
+{
+    if(p!=NULL)
+    {
+        inorder(p->left,v);
+        v.push_back(p->data);
+        inorder(p->right,v);
+        
+    }
+}
+bool isBST(Node* root) {
+    // Your code here
+    if(root==NULL) return true;
+    else
+    {
+        vector<int> v;
+        inorder(root,v);
+        for(int i=0;i<v.size()-1;i++) if(v[i]>v[i+1]) return false;
+        return true;
+    }
+}

@@ -1,0 +1,97 @@
+#include<iostream>
+#include<queue> 
+using namespace std;
+struct LL
+
+{
+    int data;
+    struct LL *l,*r;
+};
+typedef struct LL *node;
+node root=NULL,p=NULL;
+node create()
+{
+    node tmp=(node)malloc(sizeof(struct LL));
+    tmp->r=tmp->l=NULL;
+    return tmp;
+}
+node bintree()
+{
+    int val;
+    cin>>val;
+    if(root==NULL)
+    {
+        root=create();
+        root->data=val;
+    }
+    else
+    {
+        p=create();
+        p=root;
+        while(1)
+        {
+            if(p->data<=val)
+            {
+                if(p->r==NULL)
+                {
+                    node t=create();
+                    t->data=val;
+                    p->r=t;
+                    break;
+                }
+                else p=p->r;
+            }
+            else
+            {
+                if(p->l==NULL)
+                {
+                    node t=create();
+                    t->data=val;
+                    p->l=t;
+                    break;
+                    
+                }
+                else p=p->l;
+            }
+        }
+    }
+}
+void inorder(node p)
+{
+    if(p!=NULL)
+    {
+        inorder(p->l);
+        cout<<p->data<<" ";
+        inorder(p->r);
+    }
+}
+
+
+void levelO(node p)
+{
+    queue <node> q;
+    q.push(p);
+   
+    while(!q.empty())
+    {
+        node k=q.front();
+        cout<<k->data<<" ";
+        if(k->l!=NULL) q.push(k->l);
+        if(k->r!=NULL) q.push(k->r);
+        q.pop();
+        
+    }
+   
+    
+}
+
+int main()
+{
+    int n,i,j,k,l;
+    cin>>n;
+    while(n--) bintree();
+ //   inorder(root);
+    levelO(root);
+    
+    
+}

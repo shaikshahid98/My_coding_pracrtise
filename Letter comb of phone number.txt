@@ -1,0 +1,30 @@
+class Solution {
+    public List<String> letterCombinations(String digits) {
+        List<String> ans= new ArrayList<String>();
+        if(digits==null || digits.length()==0) return ans;
+        char [][] map=new char[8][];
+        map[0]="abc".toCharArray();
+    map[1]="def".toCharArray();
+    map[2]="ghi".toCharArray();
+    map[3]="jkl".toCharArray();
+    map[4]="mno".toCharArray();
+    map[5]="pqrs".toCharArray();
+    map[6]="tuv".toCharArray();
+    map[7]="wxyz".toCharArray();
+        ans.add("");
+        for(char p:digits.toCharArray())
+            ans=expand(ans,map[p-'2']);
+        return ans;
+        
+    }
+    public List<String>expand(List<String> s1,char[] s2)
+    {
+        List<String> tmp=new ArrayList<String>();
+        for(String p:s1)
+            for(char c:s2)
+                tmp.add(p+c);
+        return tmp;
+    }
+    
+        
+};

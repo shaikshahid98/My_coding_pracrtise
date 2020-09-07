@@ -1,0 +1,13 @@
+void Solution::merge(vector<int> &A, vector<int> &B) {
+    int i=A.size()-1,j=B.size()-1;
+    int lp=A.size()+B.size()-1;
+    A.resize(A.size()+B.size());
+    while(j>=0)
+    {
+        if(i>=0 && A[i] > B[j] )
+            A[lp--]= A[i--];
+        else A[lp--]= B[j--];
+    }
+    
+   return ;
+}

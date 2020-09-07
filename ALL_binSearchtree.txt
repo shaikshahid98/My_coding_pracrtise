@@ -1,0 +1,108 @@
+#include<iostream>
+using namespace std;
+#include<queue>
+#include<stack>
+struct LL{
+    int data;
+    struct LL *l,*r;
+};
+typedef struct LL *node;
+node root=NULL,p=NULL;
+node create()
+{
+    node tmp=(node)malloc(sizeof(struct LL));
+    tmp->l=tmp->r=NULL;
+    return tmp;
+}
+
+node binSearchtree()
+{
+    int val;
+    cin>>val;
+    if(root==NULL)
+    {
+        root=create();
+        root->data=val;
+        
+    }
+    else
+    {
+        p=create();
+        p=root;
+        while(1)
+        {
+            if(p->data<=val)
+            {
+                if(p->r==NULL)
+                {
+                    node t=create();
+                    t->data=val;
+                    p->r=t;
+                    break;
+                }
+                else p=p->r;
+                
+            }
+            else
+            {
+                if(p->l==NULL)
+                {
+                    node t=create();
+                    t->data=val;
+                    p->l=t;
+                    break;
+                }
+                else p=p->l;
+                
+                
+            }
+        }
+    }
+    
+}
+void inorder(node p)
+{
+    if(p!=NULL)
+    {
+        inorder(p->l);
+        cout<<p->data<<" ";
+        inorder(p->r);
+    }
+}
+void levelo(node p)
+{
+    queue<node> q;
+    q.push(p);
+    while(!q.empty())
+    {
+        node t=q.front();
+        cout<<t->data<<" ";
+        if(t->l!=NULL) q.push(t->l);
+        if(t->r!=NULL) q.push(t->r);
+        q.pop();
+    }
+}
+void DFS(node p)
+{
+    stack<node> s;
+    s.push(p);
+    while(!s.empty())
+    {
+        node t=s.top();
+        cout<<t->data<<" ";
+        s.pop();
+        if(t->l!=NULL) s.push(t->l);
+        if(t->r!=NULL) s.push(t->r);
+       
+    }
+    
+}
+int main()
+{
+    int n,i,j,k,l;
+    cin>>n;
+    while(n--) binSearchtree();
+    //inorder(root);
+    //levelo(root);
+    DFS(root);
+}

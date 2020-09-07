@@ -1,0 +1,20 @@
+int Solution::isPalindrome(string A) {
+    int n=A.size();
+    string s=A,res="";
+    for(int i=0;i<s.size();i++)
+   {
+       if(s[i]>=97 && s[i]<123 || s[i]>=48 && s[i]<=57 ) res+= s[i];
+       else if(s[i]>=65 && s[i]<=90) res+=(char) (s[i]+32);
+       else continue;
+   }
+   int i=0,j=res.size()-1;
+   //cout<<res<<endl;
+   if(res.size()<=1) return 1;
+   while(i<=j)
+   {
+       //cout<<res[i]<<"comp"<<res[j]<<endl;
+       if(res[i++]!=res[j--]) return 0;
+   }
+   return 1;
+    
+}

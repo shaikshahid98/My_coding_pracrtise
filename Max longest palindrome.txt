@@ -1,0 +1,35 @@
+n1=input()
+n1=int(n1)
+def ck(s):
+    p=""
+    for x in s:
+        p=x+p
+    if p==s:
+        return True
+    else:
+        return False
+for _ in range(n1):
+    stri=input()
+    k=0
+    leng=len(stri)
+    n=len(stri)
+    while leng>0:
+        for i in range(0,n,1):
+            if ck(stri[i:i+leng])==True:
+                print(stri[i:i+leng])
+                k=1
+                break
+            if i+leng>=n:
+                break
+        if k==1:
+            break
+        leng=leng-1
+            
+                
+        Example:
+Input:
+1
+aaaabbaa
+
+Output:
+aabbaa

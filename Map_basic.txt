@@ -1,0 +1,14 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+	map<int,pair<int,int>> h;
+	h[1]=make_pair(1,1);
+	h[2]=make_pair(2,2);
+	pair<int ,int> val=h[2];
+	
+	map<int,pair<int,int>>::iterator it;
+	for(it=h.begin();it!=h.end();it++)
+	cout<<it->first<<" "<<it->second.first<<" "<<it->second.second<<"\n";
+	
+}

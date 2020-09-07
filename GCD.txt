@@ -1,0 +1,9 @@
+int g(int a , int b)
+{
+    return a==0 ? b : g(b%a,a);
+}
+int Solution::gcd(int A, int B) {
+    if(A==0 || B==0) return  (A) ? A : B;
+    if(A>B) swap(A,B);
+    return g(A,B);
+}

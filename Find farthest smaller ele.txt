@@ -1,0 +1,35 @@
+// C++ implementation of the approach 
+#include <bits/stdc++.h> 
+using namespace std; 
+
+// Function to find the farthest 
+// smaller number in the right side 
+void farthest_min(int a[], int n) 
+{ 
+	int suf[n];
+    suf[n-1]=a[n-1];
+    for(int i=n-2;i>=0;i--)
+        suf[i]=min(suf[i+1],a[i]);
+    for(int i=0;i<n;i++)
+    {
+        int l=i+1,h=n-1,ans=-1;
+        while(l<=h)
+        {
+            int m=(l+h)/2;
+            if(suf[i]<a[i]) ans=m,l=m+1;
+            else h=m-1;
+        }
+        cout<<ans<<" ";
+    }
+} 
+
+// Driver code 
+int main() 
+{ 
+	int a[] = { 3, 1, 5, 2, 4 }; 
+	int n = sizeof(a) / sizeof(a[0]); 
+
+	farthest_min(a, n); 
+
+	return 0; 
+} 

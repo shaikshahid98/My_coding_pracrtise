@@ -1,0 +1,29 @@
+void countDistinct(int a[], int k, int n) {
+    deque<int>q;
+    unordered_map<int,int>m ;
+    int i,j;
+    for(i=0;i<k;i++)
+    {
+        q.push_back(a[i]);
+        m[a[i]]++;
+    }
+    for(;i<n;i++)
+    {
+        cout<<m.size()<<" ";
+        while(q.size()==k)
+        {
+            
+            if(m[q.front()]==1) m.erase(q.front());
+            else m[q.front()]--;
+            q.pop_front();
+        }
+        q.push_back(a[i]);
+        m[a[i]]++;
+    }
+    // for(auto p:m)
+    // cout<<p.first<<" "<<p.second<<"\n";
+    
+   cout<<m.size();
+    
+    
+}

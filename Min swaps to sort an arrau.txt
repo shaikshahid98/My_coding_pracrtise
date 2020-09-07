@@ -1,0 +1,24 @@
+  int n=N;
+    pair<int,int> arr[N];
+    for(int i=0;i<n;i++)
+    {
+        arr[i].first=A[i];
+        arr[i].second= i;
+    }
+    sort(arr,arr+n);
+    int sum=0;
+    vector<bool> vis(n,false);
+    for(int i=0;i<n;i++)
+    {
+        if(vis[i] || arr[i].second==i) continue;
+        int b=i ,cy=0;
+        while(!vis[b])
+        {
+            vis[b]=true;
+            b=arr[b].second;
+            cy++;
+        }
+        sum+= cy-1;
+    }
+    return sum;
+}

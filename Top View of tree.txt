@@ -1,0 +1,30 @@
+void conv(map<int,pair<int,int>>& m,Node *p, int hd,int d)
+{
+    if(!p) return;
+    if(m.count(hd)==0)
+    {
+        m[hd]=make_pair(p->data,d);
+    }
+    else
+    {
+        auto p1= m[hd];
+        if(p1.second > d)
+        {
+           m[hd]= make_pair(p->data,d);
+        }
+    }
+    conv(m,p->left,hd-1,d+1);
+    conv(m,p->right,hd+1,d+1);
+}
+void topView(struct Node *root)
+{
+    map<int,pair<int,int>> m;
+    if(!root) return;
+    //m[0]= make_pair(0,root->data);
+    conv(m,root,0,0);
+    for(auto p:m)
+    cout<<p.second.first<<" ";
+   // cout<<endl;
+}
+
+

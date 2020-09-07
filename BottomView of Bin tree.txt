@@ -1,0 +1,36 @@
+
+void make(Node *p,map<int , pair<int,int>> &m,int hd,int dep)
+{
+    if(!p) return;
+    if(m.count(hd)==0)  m[hd]=make_pair(p->data,dep);
+   else
+    {
+        if(m[hd].second<=dep)
+        {
+            m[hd].second=dep;
+            m[hd].first=p->data;
+        }
+    }
+    make(p->left,m,hd-1,dep+1);
+    make(p->right,m,hd+1,dep+1);
+    
+    
+}
+void bottomView(Node *p)
+{
+    map<int,pair<int,int>> m;
+    //m[0]=make_pair(p->data,0);
+    make(p,m,0,0);
+    map<int,pair<int,int>> ::iterator it;
+    for(it=m.begin();it!=m.end();++it)
+    cout<<it->second.first<<" ";
+    m.clear();
+    
+    
+    
+    
+    
+    
+    
+    
+}
